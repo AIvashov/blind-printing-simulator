@@ -2,3 +2,8 @@
      color: white;
      background-color: green;
  }
+.preload-spinner{
+    width: 3rem;
+    height: 3rem;
+    padding: 3rem;
+}

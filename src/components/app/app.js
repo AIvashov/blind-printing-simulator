@@ -1,17 +1,15 @@
 import React from "react";
-
-//import style
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-//import components
-import TopNavbar from "../top-navbar";
+
+import TopNavbar from "../topNavbar";
 import Body from "../appBody/body";
+import {Container} from "react-bootstrap";
 
 const App = () => {
-    return <div>
-        <TopNavbar/>
-        <Body />
-    </div>
+    return (<Container role="main" className='App'>
+                <TopNavbar/>
+                <Body />
+            </Container>)
 };
 
 export default App;

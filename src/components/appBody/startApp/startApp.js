@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {changeStart, choiceNumberSentences} from "../../../actions";
-import {Modal, Button, Form} from "react-bootstrap";
+import {Modal, Button, Form, Row, Col} from "react-bootstrap";
+import './startApp.css'
 
 const StartApp = ({startApp, changeStart, numberSentences, choiceNumberSentences}) => {
     return (
@@ -10,34 +11,39 @@ const StartApp = ({startApp, changeStart, numberSentences, choiceNumberSentences
             backdrop="static"
             keyboard={false}
             size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
         >
             <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title className=" d-flex justify-content-center d-grid gap-5 mx-auto  text-center">
                     Welcome to blind printing simulator
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Start simulator</h4>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Choice number of sentences for start simulator</Form.Label>
-                    <Form.Control as="select" value={numberSentences} onChange={(evt)=>{choiceNumberSentences(evt.target.value)}} >
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
-                    </Form.Control>
-                </Form.Group>
+                <Row className=" d-flex justify-content-center d-grid gap-4 mx-auto  text-center">
+                    <Col xs={12} md={9}>
+                        <span className="pre-start">For starting simulator choice number of sentences: </span>
+                    </Col>
+                    <Col xs={12} md={2}>
+                        <Form.Group >
+                            <Form.Control as="select" value={numberSentences} onChange={(evt)=>{choiceNumberSentences(evt.target.value)}} >
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                                <option value={6}>6</option>
+                                <option value={7}>7</option>
+                                <option value={8}>8</option>
+                                <option value={9}>9</option>
+                                <option value={10}>10</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                </Row>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => changeStart(startApp)} >Start</Button>
+                <div className="d-flex flex-column justify-content-center d-grid gap-4 col-6 mx-auto" >
+                    <Button variant="dark" size="lg" onClick={() => changeStart(startApp)} >Start</Button>
+                </div>
             </Modal.Footer>
         </Modal>
     );

@@ -10,23 +10,27 @@ const EndApp = ({startApp, changeStart, endApp, changeEnd, accuracy, speed}) => 
             backdrop="static"
             keyboard={false}
             size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
         >
             <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    End simulator
+                <Modal.Title className="d-flex flex-column justify-content-center d-grid gap-4 col-6 mx-auto text-center">
+                    <h3>
+                        End simulator
+                    </h3>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Your accuracy {accuracy}%</h4>
-                <h4>Your speed {speed} sym/min</h4>
+                <div className="d-flex flex-column text-center">
+                    <h4>Your accuracy: {accuracy}<span className="badge ">%</span>and your speed: {speed}<span className="badge ">ch/min</span></h4>
+                </div>
+
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => {
-                    changeEnd(endApp);
-                    changeStart(startApp)
-                }} >Replay</Button>
+                <div className="d-flex flex-column justify-content-center d-grid gap-4 col-6 mx-auto" >
+                    <Button variant="dark" size="lg" onClick={() => {
+                        changeEnd(endApp);
+                        changeStart(startApp)
+                    }} >Replay</Button>
+                </div>
             </Modal.Footer>
         </Modal>
     );

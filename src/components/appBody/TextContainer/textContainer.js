@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import './TextContainer.css';
 import { connect } from "react-redux";
-import {Spinner, Alert, Button} from "react-bootstrap"
-
+import {Spinner, Alert, Button, Container, Row, Col} from "react-bootstrap"
 import withApiService from "../../hoc/with-api-service";
 import {changeEnd, changeStart, fetchText, calculateAccuracy, calculateSpeed} from "../../../actions";
 import { compose } from "../../../utils";
@@ -171,32 +170,58 @@ class TextContainer extends Component{
 
 
     render() {
-        const { text, loading, error, accuracy, speed } = this.props;
+        const { text, loading, error, accuracy, speed, startApp } = this.props;
         const { englishKeyboard } = this.state;
         if (loading){
-            return (<Spinner animation="border" role="status">
+            return (
+                <div className="d-flex justify-content-center align-items-center p-5" >
+                    <Spinner animation="border" role="status" className="preload-spinner" >
                         <span className="sr-only">Loading...</span>
-                    </Spinner>)
+                    </Spinner>
+                </div>
+            )
         }
         if(error){
             return <ErrorIndicator/>
         }
         return (
-            <div>
-                <Alert show ={!englishKeyboard} variant="danger">
-                    <Alert.Heading>Oops... No that keyboard language... </Alert.Heading>
-                    Please, change your keyboard layout to English!
-                    <hr/>
-                    <div className="d-flex justify-content-center">
-                        <Button  onClick={() => {this.setState({englishKeyboard:true})}} variant="outline-danger">
-                            OK
-                        </Button>
-                    </div>
-                </Alert>
-                {this.enumerateSentences(text)}
-                <h4>Accuracy {accuracy}%</h4>
-                <h4>Speed {speed} sym/min</h4>
-            </div>
+            <Container className="p-2">
+                <Row>
+                    <Col xs={12} md={12}>
+                        <Alert show ={!englishKeyboard} variant="danger">
+                            <Alert.Heading>Oops... No that keyboard language... </Alert.Heading>
+                            Please, change your keyboard layout to English!
+                            <hr/>
+                            <div className="d-flex justify-content-center">
+                                <Button variant="outline-danger" size="lg" onClick={() => {this.setState({englishKeyboard:true})}} >
+                                    OK
+                                </Button>
+                            </div>
+                        </Alert>
+                    </Col>
+                    <Col xs={12} md={10}>
+
+                        {this.enumerateSentences(text)}
+                    </Col >
+                    <Col xs={12} md={2} >
+                        <Col className="justify-content-center flex-column d-grid ">
+                            <h4>Accuracy </h4>
+                            <h4>{accuracy}<span className="badge">%</span></h4>
+                            <hr/>
+                        </Col>
+                        <Col className="d-flex flex-column justify-content-center d-grid ">
+                            <h4>Speed </h4>
+                            <h4>{speed}<span className="badge">ch/min</span></h4>
+                            <hr/>
+                        </Col>
+                        <Col className=" flex-column d-flex justify-content-center d-grid gap-5 mx-auto">
+                            <Button variant="dark" size="lg" onClick={() => this.props.changeStart(startApp)}>
+                                Replay
+                            </Button>
+                        </Col>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
