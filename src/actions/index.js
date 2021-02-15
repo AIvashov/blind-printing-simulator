@@ -32,6 +32,13 @@ const changeStart = (startApp) => {
     };
 };
 
+const changeEnd = (endApp) => {
+    return {
+        type : 'CHANGE_END',
+        payload : !endApp
+    };
+};
+
 const choiceNumberSentences = (value) => {
     return {
         type : 'CHANGE_NUMBER_SENTENCES',
@@ -39,8 +46,25 @@ const choiceNumberSentences = (value) => {
     };
 };
 
+const calculateAccuracy = (accuracy) => {
+    return {
+        type : 'CALCULATE_ACCURACY',
+        payload : accuracy
+    };
+};
+
+const calculateSpeed = (speed) => {
+    return {
+        type : 'CALCULATE_SPEED',
+        payload : speed
+    };
+};
+
 export {
     fetchText,
     changeStart,
-    choiceNumberSentences
+    changeEnd,
+    choiceNumberSentences,
+    calculateAccuracy,
+    calculateSpeed
 };

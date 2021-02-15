@@ -7,12 +7,13 @@ const StartApp = ({startApp, changeStart, numberSentences, choiceNumberSentences
     return (
         <Modal
             show = {startApp}
-            onHide = {() => changeStart(startApp)}
+            backdrop="static"
+            keyboard={false}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Welcome to blind printing simulator
                 </Modal.Title>
@@ -34,10 +35,9 @@ const StartApp = ({startApp, changeStart, numberSentences, choiceNumberSentences
                         <option value={10}>10</option>
                     </Form.Control>
                 </Form.Group>
-
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => changeStart(startApp)}>Start</Button>
+                <Button onClick={() => changeStart(startApp)} >Start</Button>
             </Modal.Footer>
         </Modal>
     );
@@ -47,11 +47,11 @@ const mapStateToProps = ({ startApp, numberSentences }) =>{
     return { startApp, numberSentences };
 };
 
-const mapDispathToProps =(dispatch) => {
+const mapDispatchToProps =(dispatch) => {
     return{
         changeStart : (startApp) =>  dispatch(changeStart(startApp)),
         choiceNumberSentences : (value) => dispatch(choiceNumberSentences(value))
     }
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(StartApp);
+export default connect(mapStateToProps, mapDispatchToProps)(StartApp);
